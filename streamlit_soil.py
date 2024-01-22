@@ -4,7 +4,6 @@ import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
 # Input data files are available in the "../input/" directory.
 # For example, running this (by clicking run or pressing Shift+Enter) will list all files under the input directory
 
-
 import numpy as np
 import pandas as pd
 import csv
@@ -21,7 +20,7 @@ st.image(image, use_column_width=True)
 
 data = pd.read_csv(r"soilnew.csv")
 
-req_col_names = ["p_index", "ggbfs_per", "fly_perc", "M", "AoverB", "NaoverAl", "SioverAL","UCS"]
+req_col_names = ["d10 (mm)", "d50 (mm)", "d60 (mm)", "e","k (m/s)"]
 curr_col_names = list(data.columns)
 
 mapper = {}
@@ -44,23 +43,20 @@ from sklearn.model_selection import train_test_split
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=2)
 st.sidebar.header('Specify Input Parameters')
-"ggbfs_per", "fly_perc", "M", "AoverB", "NaoverAl", "SioverAL"
+"d10 (mm)", "d50 (mm)", "d60 (mm)", "e"
 def get_input_features():
-    p_index = st.sidebar.slider('PI', 14.07,88.46,15.55)
-    ggbfs_per = st.sidebar.slider('%S',0,50,25)
-    fly_perc = st.sidebar.slider('%FA', 0,20,15)
-    M = st.sidebar.slider('M', 4,15,6)
-    AoverB = st.sidebar.slider('A/B', 0.45,0.85,0.65)
-    NaoverAl = st.sidebar.slider('Na/Al', 0.24,1.98,0.65)
-    SioverAL = st.sidebar.slider('Si/Al', 1.49,2.49,1.70)
+    d10 (mm) = st.sidebar.slider('d10', 14.07,88.46,15.55)
+    d50 (mm) = st.sidebar.slider('d50',0,50,25)
+    d60 (mm) = st.sidebar.slider('d60', 0,20,15)
+    e = st.sidebar.slider('air void', 4,15,6)
 
-    data_user = {'PI': p_index,
-            '%S': ggbfs_per,
-            '%FA': fly_perc,
+
+    data_user = {'d10': p_index,
+            'd50': ggbfs_per,
+            'd60': fly_perc,
             'M': M,
-             'A/B': AoverB,
-             'NA/Al': NaoverAl,
-             'SI/Al': SioverAL,
+             'air void': e,
+
     }
     features = pd.DataFrame(data_user, index=[0])
     return features
@@ -78,7 +74,7 @@ st.write('---')
 
 # Reads in saved classification model
 import pickle
-load_clf = pickle.load(open('soil_eco.pkl', 'rb'))
+load_clf = pickle.load(open('ada_boost_model.pkl', 'rb'))
 st.header('Prediction of UCS (Mpa)')
 
 # Apply model to make predictions
