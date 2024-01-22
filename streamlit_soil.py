@@ -86,9 +86,10 @@ st.write('---')
 
 # Reads in saved classification model
 import pickle
+load_clf = pickle.load(open('ada_boost_model.pkl', 'rb'))
 st.header('Prediction of UCS (Mpa)')
 
 # Apply model to make predictions
-prediction = model.predict(df)
+prediction = load_clf.predict(df)
 st.write(prediction)
 st.write('---')
