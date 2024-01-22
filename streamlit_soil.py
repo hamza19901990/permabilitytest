@@ -37,11 +37,27 @@ st.dataframe(data)
 X = data.iloc[:,:-1]         # Features - All columns but last
 y = data.iloc[:,-1]          # Target - Last Column
 print(X)
-from sklearn.preprocessing import StandardScaler
 
 from sklearn.model_selection import train_test_split
+import pickle
+from sklearn.ensemble import AdaBoostRegressor
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=2)
+# Sample data (replace with your own data)
+# X, y = your_features, your_labels
+
+# Split the data
+
+# Initialize and train the AdaBoostRegressor
+model = AdaBoostRegressor(learning_rate=0.5, n_estimators=100)
+model.fit(X_train, y_train)
+
+# Save the model to a pickle file
+with open('ada_boost_model.pkl', 'wb') as file:
+    pickle.dump(model, file)
+
+print("Model saved as 'ada_boost_model.pkl'")
 st.sidebar.header('Specify Input Parameters')
 "d10", "d50", "d60", "e"
 def get_input_features():
