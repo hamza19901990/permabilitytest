@@ -18,7 +18,7 @@ st.write('---')
 image=Image.open(r'Unconfined-Compressive-Strength-Test-Apparatus.jpg')
 st.image(image, use_column_width=True)
 
-data = pd.read_csv(r"soilnew.csv")
+data = pd.read_csv(r"soil permability.csv")
 
 req_col_names = ["d10 (mm)", "d50 (mm)", "d60 (mm)", "e","k (m/s)"]
 curr_col_names = list(data.columns)
@@ -45,10 +45,10 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 st.sidebar.header('Specify Input Parameters')
 "d10 (mm)", "d50 (mm)", "d60 (mm)", "e"
 def get_input_features():
-    d10 (mm) = st.sidebar.slider('d10', 14.07,88.46,15.55)
-    d50 (mm) = st.sidebar.slider('d50',0,50,25)
-    d60 (mm) = st.sidebar.slider('d60', 0,20,15)
-    e = st.sidebar.slider('air void', 4,15,6)
+    d10 (mm) = st.sidebar.slider('d10', 0.01,0.91,0.05)
+    d50 (mm) = st.sidebar.slider('d50',0.02,12.00,1.00)
+    d60 (mm) = st.sidebar.slider('d60', 0.03,19.00,13.00)
+    e = st.sidebar.slider('air void', 0.10,0.94,0.85)
 
 
     data_user = {'d10': p_index,
