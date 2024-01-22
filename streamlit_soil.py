@@ -51,10 +51,9 @@ def get_input_features():
     e = st.sidebar.slider('air void', 0.10,0.94,0.85)
 
 
-    data_user = {'d10': p_index,
-            'd50': ggbfs_per,
-            'd60': fly_perc,
-            'M': M,
+    data_user = {'d10': d10,
+            'd50': d50,
+            'd60': d60,
              'air void': e,
 
     }
