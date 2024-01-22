@@ -15,7 +15,7 @@ st.write("""
 This app predicts the **Unconfied Compressive Strength (UCS) of Geopolymer Stabilized Clayey Soil**!
 """)
 st.write('---')
-image=Image.open(r'Unconfined-Compressive-Strength-Test-Apparatus.jpg')
+image=Image.open(r'Unconfined-Compressive-Strength-Test-Apparatus (1).jpg')
 st.image(image, use_column_width=True)
 
 data = pd.read_csv(r"soil permability.csv")
