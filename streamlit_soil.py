@@ -20,7 +20,7 @@ st.image(image, use_column_width=True)
 
 data = pd.read_csv(r"soil permability.csv")
 
-req_col_names = ["d10 (mm)", "d50 (mm)", "d60 (mm)", "e","k (m/s)"]
+req_col_names = ["d10", "d50", "d60", "e","k(m/s)"]
 curr_col_names = list(data.columns)
 
 mapper = {}
@@ -43,11 +43,11 @@ from sklearn.model_selection import train_test_split
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=2)
 st.sidebar.header('Specify Input Parameters')
-"d10 (mm)", "d50 (mm)", "d60 (mm)", "e"
+"d10", "d50", "d60", "e"
 def get_input_features():
-    d10 (mm) = st.sidebar.slider('d10', 0.01,0.91,0.05)
-    d50 (mm) = st.sidebar.slider('d50',0.02,12.00,1.00)
-    d60 (mm) = st.sidebar.slider('d60', 0.03,19.00,13.00)
+    d10 = st.sidebar.slider('d10', 0.01,0.91,0.05)
+    d50 = st.sidebar.slider('d50',0.02,12.00,1.00)
+    d60 = st.sidebar.slider('d60', 0.03,19.00,13.00)
     e = st.sidebar.slider('air void', 0.10,0.94,0.85)
 
 
