@@ -53,9 +53,6 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 model = AdaBoostRegressor(learning_rate=0.5, n_estimators=100)
 model.fit(X_train, y_train)
 
-# Save the model to a pickle file
-with open('ada_boost_model.pkl', 'wb') as file:
-    pickle.dump(model, file)
 
 print("Model saved as 'ada_boost_model.pkl'")
 st.sidebar.header('Specify Input Parameters')
@@ -89,10 +86,9 @@ st.write('---')
 
 # Reads in saved classification model
 import pickle
-load_clf = pickle.load(open('ada_boost_model.pkl', 'rb'))
 st.header('Prediction of UCS (Mpa)')
 
 # Apply model to make predictions
-prediction = load_clf.predict(df)
+prediction = model.predict(df)
 st.write(prediction)
 st.write('---')
