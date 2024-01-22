@@ -20,7 +20,7 @@ st.image(image, use_column_width=True)
 
 data = pd.read_csv(r"soil permability.csv")
 
-req_col_names = ["d10", "d50", "d60", "e","k(m/s)"]
+req_col_names = ["d10", "d50", "d60", "e","k (m/s)"]
 curr_col_names = list(data.columns)
 
 mapper = {}
